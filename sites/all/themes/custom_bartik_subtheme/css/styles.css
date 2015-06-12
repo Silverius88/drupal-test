@@ -1,0 +1,9 @@
+#page-wrapper {
+	min-width: 1280px;
+}
+#header div.section, #featured div.section, #messages div.section, #main, #triptych, #footer-columns, #footer {
+	width: 1280px;
+}
+.form-radio-wrapper {
+	display: inline-block;
+}

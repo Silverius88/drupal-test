@@ -1,0 +1,4 @@
+name = custom module for round2
+description = my custom mobule for round2
+version = 7.x-1.x
+core = 7.x

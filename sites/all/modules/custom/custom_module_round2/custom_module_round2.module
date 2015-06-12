@@ -1,0 +1,77 @@
+<?php
+/**
+ * @file
+ * Module file for custom_module_round2.
+ */
+
+/**
+ * Implements hook_menu().
+ */
+function custom_module_round2_menu() {
+  $items = array();
+
+  $items['custom_module_round2_page'] = array(
+    'title' => 'custom module round2 menu',
+    'page callback' => '_custom_module_round2_menu_page',
+    'access callback' => TRUE,
+  );
+
+  return $items;
+}
+
+/**
+ * Implements hook_theme().
+ */
+function custom_module_round2_theme() {
+  return array(
+    'custom_module_round2_page_title' => array(
+      'variables' => array('page_title' => NULL),
+    ),
+    'custom_module_round2_page_content' => array(
+      'template' => 'templates/custom_module_round2_page_content',
+      'variables' => array(
+        'page_title' => NULL,
+        'page_content' => NULL,
+      ),
+    ),
+  );
+}
+
+/**
+ * Returns HTML for a custom_module_round2_page_title.
+ *
+ * @param $variables
+ *   An associative array containing:
+ *   - page_title: page title.
+ */
+function theme_custom_module_round2_page_title($variables) {
+  $output = '';
+  if (isset($variables['page_title'])) {
+    $output .= '<h1>' . $variables['page_title'] . '</h1>';
+  }
+  return $output;
+}
+
+/**
+ * Page callback custom_module_round2.
+ */
+function _custom_module_round2_menu_page() {
+  $return = '';
+  $page_title_html = theme('theme_custom_module_round2_page_title',
+    array(
+      'page_title' => t('Custom page title'),
+    )
+  );
+  $page_html = theme('custom_module_round2_page_content',
+    array(
+      'page_title' => $page_title_html,
+      'page_content' => '<p>This is a custom page content</p>',
+    )
+  );
+  return $page_html;
+}
+
+
+
+
+
