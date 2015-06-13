@@ -56,7 +56,6 @@ function theme_custom_module_round2_page_title($variables) {
  * Page callback custom_module_round2.
  */
 function _custom_module_round2_menu_page() {
-  $return = '';
   $page_title_html = theme('theme_custom_module_round2_page_title',
     array(
       'page_title' => t('Custom page title'),
