@@ -1,0 +1,4 @@
+name = Custom ctools
+description = My custom ctools module
+package = Custom
+core = 7.x
