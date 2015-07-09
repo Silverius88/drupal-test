@@ -1,0 +1,7 @@
+name = Custom ctools plugin
+description = My custom ctools plugin module
+package = Custom
+core = 7.x
+dependencies[] = ctools
+dependencies[] = panels
+dependencies[] = page_manager

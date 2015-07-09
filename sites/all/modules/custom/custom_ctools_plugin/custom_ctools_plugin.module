@@ -1,0 +1,16 @@
+<?php
+
+/*
+ * @file
+ *
+ * Custom ctools plugin module.
+ */
+
+/**
+ * Implements hook_ctools_plugin_directory().
+ */
+function custom_ctools_plugin_ctools_plugin_directory($owner, $plugin_type) {
+  if ($owner == 'ctools' && !empty($plugin_type)) {
+    return "plugins/" . $plugin_type;
+  }
+}
