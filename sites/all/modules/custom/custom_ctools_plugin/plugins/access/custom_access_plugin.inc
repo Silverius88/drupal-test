@@ -17,10 +17,11 @@ $plugin = array(
 );
 
 /**
- * Settings form for our access plugin.
+ * Settings form for plugin.
  */
 function custom_access_plugin_registered_years_ago_access_settings_form(&$form, &$form_state, $conf) {
   $options = _custom_access_plugin_years_ago_get_values();
+  $form = array();
   $form['settings']['registered_years_ago'] = array(
     '#type' => 'select',
     '#title' => t('Select how many year ago registered current user'),
@@ -31,6 +32,10 @@ function custom_access_plugin_registered_years_ago_access_settings_form(&$form, 
   return $form;
 }
 
+/**
+ * Array options custom_access_plugin_registered_years_ago_access_settings_form
+ * @return array
+ */
 function _custom_access_plugin_years_ago_get_values() {
   return array(
     0 => t('less then 1 years'),
