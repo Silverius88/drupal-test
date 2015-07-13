@@ -21,7 +21,6 @@ $plugin = array(
  */
 function custom_access_plugin_registered_years_ago_access_settings_form(&$form, &$form_state, $conf) {
   $options = _custom_access_plugin_years_ago_get_values();
-  $form = array();
   $form['settings']['registered_years_ago'] = array(
     '#type' => 'select',
     '#title' => t('Select how many year ago registered current user'),
@@ -57,35 +56,31 @@ function custom_access_plugin_registered_years_ago_access_summary($conf, $contex
  * Check for access.
  */
 function custom_access_plugin_registered_years_ago_access($conf, $context) {
-  global $user;
   // As far as I know there should always be a context at this point, but this
   // is safe.
-  if (empty($context) || empty($context->data)) {
-    return FALSE;
-  }
-
-  if ($user->uid == 0) {
+  $current_account = $context->data;
+  if (empty($context) || empty($current_account) || $current_account->uid == 0) {
     return FALSE;
   }
 
   switch ($conf['registered_years_ago']) {
     case 0:
       $time_start = strtotime("-1 year", time());
-      $return = ($user->created > $time_start) ? TRUE : FALSE;
+      $return = ($current_account->created > $time_start) ? TRUE : FALSE;
       break;
     case 1:
       $time_start = strtotime("-2 year", time());
       $time_end = strtotime("-1 year", time());
-      $return = ($user->created > $time_start && $user->created <= $time_end) ? TRUE : FALSE;
+      $return = ($current_account->created > $time_start && $current_account->created <= $time_end) ? TRUE : FALSE;
       break;
     case 2:
       $time_start = strtotime("-3 year", time());
       $time_end = strtotime("-2 year", time());
-      $return = ($user->created > $time_start && $user->created <= $time_end) ? TRUE : FALSE;
+      $return = ($current_account->created > $time_start && $current_account->created <= $time_end) ? TRUE : FALSE;
       break;
     case 3:
       $time_start = strtotime("-3 year", time());
-      $return = ($user->created <= $time_start) ? TRUE : FALSE;
+      $return = ($current_account->created <= $time_start) ? TRUE : FALSE;
       break;
     default:
       $return = FALSE;
